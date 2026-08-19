@@ -283,6 +283,48 @@
 
             <!-- Call & CTA Buttons -->
             <div class="hidden md:flex items-center gap-3">
+                <div class="relative" id="language-selector">
+    <button
+        id="language-btn"
+        type="button"
+        class="px-4 py-2 rounded-xl bg-white/80 border border-sky-300 text-slate-700 text-xs font-bold flex items-center gap-2 hover:bg-sky-100 transition-colors"
+        aria-haspopup="true"
+        aria-expanded="false"
+    >
+        <i class="fa-solid fa-globe text-brand-primary"></i>
+        <span id="current-language">English</span>
+        <i class="fa-solid fa-chevron-down text-[9px]"></i>
+    </button>
+
+    <div
+        id="language-dropdown"
+        class="hidden absolute right-0 mt-2 w-44 bg-white rounded-xl border border-sky-200 shadow-xl overflow-hidden z-50"
+    >
+        <button
+            type="button"
+            class="language-option w-full px-4 py-3 text-left text-sm font-bold text-slate-700 hover:bg-sky-100 hover:text-brand-primary transition-colors"
+            data-lang="en"
+        >
+            🇬🇧 English
+        </button>
+
+        <button
+            type="button"
+            class="language-option w-full px-4 py-3 text-left text-sm font-bold text-slate-700 hover:bg-sky-100 hover:text-brand-primary transition-colors"
+            data-lang="am"
+        >
+            🇪🇹 አማርኛ
+        </button>
+
+        <button
+            type="button"
+            class="language-option w-full px-4 py-3 text-left text-sm font-bold text-slate-700 hover:bg-sky-100 hover:text-brand-primary transition-colors"
+            data-lang="om"
+        >
+            🟢 Afaan Oromoo
+        </button>
+    </div>
+</div>
                 <a href="https://t.me/+251985208402" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl bg-sky-100/80 border border-sky-300 text-sky-800 text-xs font-bold flex items-center gap-2 hover:bg-sky-200 transition-colors">
                     <i class="fa-brands fa-telegram text-sky-600"></i> Telegram
                 </a>
@@ -299,12 +341,43 @@
 
         <!-- Mobile Drawer Menu -->
         <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-sky-200 px-6 py-6 space-y-2">
-            <a href="#services" class="mobile-link block py-2.5 px-3 rounded-lg text-base font-bold text-slate-800 hover:text-brand-primary hover:bg-sky-100/50 transition-all">Services</a>
-            <a href="#pricing" class="mobile-link block py-2.5 px-3 rounded-lg text-base font-bold text-slate-800 hover:text-brand-primary hover:bg-sky-100/50 transition-all">Pricing</a>
-            <a href="#quote-calculator" class="mobile-link block py-2.5 px-3 rounded-lg text-base font-bold text-slate-800 hover:text-brand-primary hover:bg-sky-100/50 transition-all">Instant Quote Calculator</a>
-            <a href="#before-after" class="mobile-link block py-2.5 px-3 rounded-lg text-base font-bold text-slate-800 hover:text-brand-primary hover:bg-sky-100/50 transition-all">Results</a>
-            <a href="#gallery" class="mobile-link block py-2.5 px-3 rounded-lg text-base font-bold text-slate-800 hover:text-brand-primary hover:bg-sky-100/50 transition-all">Gallery</a>
-            <a href="#faq" class="mobile-link block py-2.5 px-3 rounded-lg text-base font-bold text-slate-800 hover:text-brand-primary hover:bg-sky-100/50 transition-all">FAQ</a>
+            <div class="mb-4 pb-4 border-b border-sky-200">
+    <div class="text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-2">
+        <i class="fa-solid fa-globe text-brand-primary mr-1"></i>
+        Language
+    </div>
+
+    <div class="grid grid-cols-3 gap-2">
+        <button
+            type="button"
+            class="mobile-language-option px-2 py-3 rounded-xl bg-sky-100 border border-sky-300 text-xs font-bold text-brand-primary"
+            data-lang="en"
+        >
+            🇬🇧<br>English
+        </button>
+
+        <button
+            type="button"
+            class="mobile-language-option px-2 py-3 rounded-xl bg-white border border-sky-200 text-xs font-bold text-slate-700 hover:bg-sky-100"
+            data-lang="am"
+        >
+            🇪🇹<br>አማርኛ
+        </button>
+
+        <button
+            type="button"
+            class="mobile-language-option px-2 py-3 rounded-xl bg-white border border-sky-200 text-xs font-bold text-slate-700 hover:bg-sky-100"
+            data-lang="om"
+        >
+            🟢<br>Oromoo
+        </button>
+    </div>
+</div>
+            <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
+<a href="#quote-calculator" data-i18n="nav.calculator">Calculator</a>
+<a href="#before-after" data-i18n="nav.results">Results</a>
+<a href="#gallery" data-i18n="nav.gallery">Gallery</a>
+<a href="#faq" data-i18n="nav.faq">FAQ</a>
             
             <div class="pt-4 mt-2 border-t border-sky-200 flex flex-col gap-3">
                 <a href="tel:+251985208402" class="gradient-button w-full py-3.5 rounded-xl text-center font-bold text-white flex items-center justify-center gap-2 shadow-md">
@@ -949,6 +1022,291 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
 
+            // ============================================================
+// LANGUAGE PREFERENCE SYSTEM
+// English / Amharic / Afaan Oromoo
+// ============================================================
+
+const translations = {
+
+    en: {
+        "nav.services": "Services",
+        "nav.pricing": "Pricing",
+        "nav.calculator": "Calculator",
+        "nav.results": "Results",
+        "nav.gallery": "Gallery",
+        "nav.faq": "FAQ",
+
+        "hero.location": "Betel · Beside Oasis General Hospital",
+        "hero.title1": "Give Your Sneakers",
+        "hero.title2": "a",
+        "hero.title3": "Fresh Spa Start",
+        "hero.description":
+            "Addis Ababa's premier professional shoe care service. We deep clean, unyellow, deodorize, and restore your sneakers to factory fresh condition using material-safe luxury formulas.",
+        "hero.book": "Book a Cleaning",
+        "hero.telegram": "Chat on Telegram",
+
+        "services.badge": "Specialized Shoe Care",
+        "services.title": "Our Premium Spa Treatments",
+        "services.description":
+            "Every pair receives customized material-specific care, non-toxic cleaners, and high-precision detail brushes.",
+
+        "results.badge": "Real Transformations",
+        "results.title": "See The Shoe Spa Difference",
+        "results.description":
+            "Drag the center slider left and right to compare dirty sneakers before and after our professional detailing process.",
+
+        "process.badge": "Simple 4-Step Process",
+        "process.title": "How Shoe Spa Works",
+        "process.description":
+            "Getting your footwear cleaned in Betel is fast, seamless, and convenient.",
+
+        "pricing.badge": "Transparent Pricing",
+        "pricing.title": "Affordable Quality Care",
+        "pricing.description":
+            "Clear starting prices with no hidden charges. Final cost depends on shoe material and condition.",
+
+        "gallery.badge": "Portfolio",
+        "gallery.title": "Fresh Kicks Gallery",
+        "gallery.description":
+            "A look at recent pairs cleaned and restored at our Betel studio.",
+
+        "faq.badge": "Got Questions?",
+        "faq.title": "Frequently Asked Questions",
+
+        "language": "Language"
+    },
+
+    am: {
+        "nav.services": "አገልግሎቶች",
+        "nav.pricing": "ዋጋ",
+        "nav.calculator": "የዋጋ ማስሊያ",
+        "nav.results": "ውጤቶች",
+        "nav.gallery": "የምስል ማሳያ",
+        "nav.faq": "ጥያቄዎች",
+
+        "hero.location": "ቤቴል · ከኦዋሲስ ጄኔራል ሆስፒታል አጠገብ",
+        "hero.title1": "ጫማዎትን",
+        "hero.title2": "እንደገና",
+        "hero.title3": "አዲስ ያድርጉ",
+        "hero.description":
+            "በአዲስ አበባ የሚገኘው የጫማ ማጽጃ እና እንክብካቤ አገልግሎታችን ጫማዎን በጥልቀት ያጸዳል፣ ቢጫ የሆኑ ሶሎችን ያድሳል፣ ሽታን ያስወግዳል እና ጫማዎን ወደ አዲስ ሁኔታ ይመልሳል።",
+        "hero.book": "ጽዳት ይያዙ",
+        "hero.telegram": "በTelegram ያናግሩን",
+
+        "services.badge": "ልዩ የጫማ እንክብካቤ",
+        "services.title": "የእኛ ፕሪሚየም የጫማ እንክብካቤ",
+        "services.description":
+            "እያንዳንዱ ጫማ ከቁሱ ጋር በተስማማ መንገድ ይጸዳል እና ይንከባከባል።",
+
+        "results.badge": "እውነተኛ ለውጦች",
+        "results.title": "የShoe Spa ልዩነትን ይመልከቱ",
+        "results.description":
+            "መሃሉን ወደ ግራና ቀኝ በመጎተት ጫማውን ከጽዳት በፊትና በኋላ ያወዳድሩ።",
+
+        "process.badge": "ቀላል 4 ደረጃዎች",
+        "process.title": "Shoe Spa እንዴት ይሰራል?",
+        "process.description":
+            "በቤቴል ጫማዎን ማጽዳት ፈጣን፣ ቀላል እና ምቹ ነው።",
+
+        "pricing.badge": "ግልጽ ዋጋ",
+        "pricing.title": "ተመጣጣኝ እና ጥራት ያለው እንክብካቤ",
+        "pricing.description":
+            "የመነሻ ዋጋዎች ግልጽ ናቸው። የመጨረሻ ዋጋ በጫማው ቁሳቁስና ሁኔታ ይወሰናል።",
+
+        "gallery.badge": "የስራ ማሳያ",
+        "gallery.title": "የተጸዱ ጫማዎች",
+        "gallery.description":
+            "በቤቴል ስቱዲዮአችን በቅርቡ የተጸዱና የታደሱ ጫማዎች።",
+
+        "faq.badge": "ጥያቄ አለዎት?",
+        "faq.title": "ተደጋጋሚ ጥያቄዎች",
+
+        "language": "ቋንቋ"
+    },
+
+    om: {
+        "nav.services": "Tajaajiloota",
+        "nav.pricing": "Gatii",
+        "nav.calculator": "Herrega Gatii",
+        "nav.results": "Bu'aa",
+        "nav.gallery": "Galarii",
+        "nav.faq": "Gaaffiiwwan",
+
+        "hero.location": "Betel · Cinaa Hospitaala Waliigalaa Oasis",
+        "hero.title1": "Kophee Kee",
+        "hero.title2": "Irra Deebiin",
+        "hero.title3": "Haaraa Godhi",
+        "hero.description":
+            "Shoe Spa tajaajila qulqullinaa fi kunuunsa kophee ogummaa qabu Addis Ababa keessatti kennudha. Kophee kee gadi faggeenyaan ni qulqulleessina, foolii ni balleessina, halluu isaa ni deebisna, akkasumas gara haala haaraatti ni deebisna.",
+        "hero.book": "Qulqullina Qabadhu",
+        "hero.telegram": "Telegram irratti Nu Qunnami",
+
+        "services.badge": "Kunuunsa Kophee Addaa",
+        "services.title": "Tajaajiloota Kunuunsa Kophee Premium",
+        "services.description":
+            "Kopheen hundi akkaataa meeshaa isaa irratti hundaa'uun sirriitti ni kunuunfama.",
+
+        "results.badge": "Jijjiirama Dhugaa",
+        "results.title": "Garaagarummaa Shoe Spa Ilaali",
+        "results.description":
+            "Islaayidara gidduu jiru gara bitaa fi mirgaatti harkisuun kophee qulqullina duraafi booda wal bira qabi.",
+
+        "process.badge": "Adeemsa Salphaa Sadarkaa 4",
+        "process.title": "Shoe Spa Akkamitti Hojjeta?",
+        "process.description":
+            "Betel keessatti kophee kee qulqulleessisuun saffisaa, salphaa fi mijataa dha.",
+
+        "pricing.badge": "Gatii Ifaa",
+        "pricing.title": "Kunuunsa Qulqulluu fi Gatii Madaalawaa",
+        "pricing.description":
+            "Gatiin jalqabaa ifa dha; kaffaltiin dhumaa haala fi meeshaa kophee irratti hundaa'a.",
+
+        "gallery.badge": "Galarii",
+        "gallery.title": "Galarii Kophee Haaraa",
+        "gallery.description":
+            "Kophee yeroo dhiyoo kana Betel keessatti qulqulleeffamee fi haaromfame ilaali.",
+
+        "faq.badge": "Gaaffii Qabdaa?",
+        "faq.title": "Gaaffiiwwan Yeroo Baay'ee Gaafataman",
+
+        "language": "Afaan"
+    }
+};
+
+
+// Apply translations
+function applyLanguage(lang) {
+    const dictionary = translations[lang] || translations.en;
+
+    document.querySelectorAll("[data-i18n]").forEach(element => {
+        const key = element.getAttribute("data-i18n");
+
+        if (dictionary[key]) {
+            element.textContent = dictionary[key];
+        }
+    });
+
+    // Update HTML language attribute
+    document.documentElement.lang = lang;
+
+    // Save preference
+    localStorage.setItem("shoeSpaLanguage", lang);
+
+    // Update desktop language button
+    const currentLanguage = document.getElementById("current-language");
+
+    if (currentLanguage) {
+        if (lang === "am") {
+            currentLanguage.textContent = "አማርኛ";
+        } else if (lang === "om") {
+            currentLanguage.textContent = "Afaan Oromoo";
+        } else {
+            currentLanguage.textContent = "English";
+        }
+    }
+
+    // Highlight selected mobile language
+    document.querySelectorAll(".mobile-language-option").forEach(button => {
+        button.classList.remove(
+            "bg-sky-100",
+            "border-sky-300",
+            "text-brand-primary"
+        );
+
+        button.classList.add(
+            "bg-white",
+            "border-sky-200",
+            "text-slate-700"
+        );
+
+        if (button.dataset.lang === lang) {
+            button.classList.remove(
+                "bg-white",
+                "border-sky-200",
+                "text-slate-700"
+            );
+
+            button.classList.add(
+                "bg-sky-100",
+                "border-sky-300",
+                "text-brand-primary"
+            );
+        }
+    });
+}
+
+
+// Desktop dropdown
+const languageBtn = document.getElementById("language-btn");
+const languageDropdown = document.getElementById("language-dropdown");
+
+if (languageBtn && languageDropdown) {
+
+    languageBtn.addEventListener("click", function (event) {
+        event.stopPropagation();
+
+        const isHidden = languageDropdown.classList.contains("hidden");
+
+        languageDropdown.classList.toggle("hidden");
+
+        languageBtn.setAttribute(
+            "aria-expanded",
+            isHidden ? "true" : "false"
+        );
+    });
+
+    document.addEventListener("click", function (event) {
+        if (
+            !languageBtn.contains(event.target) &&
+            !languageDropdown.contains(event.target)
+        ) {
+            languageDropdown.classList.add("hidden");
+            languageBtn.setAttribute("aria-expanded", "false");
+        }
+    });
+}
+
+
+// Desktop language selection
+document.querySelectorAll(".language-option").forEach(button => {
+
+    button.addEventListener("click", function () {
+
+        const selectedLanguage = this.dataset.lang;
+
+        applyLanguage(selectedLanguage);
+
+        if (languageDropdown) {
+            languageDropdown.classList.add("hidden");
+        }
+
+        if (languageBtn) {
+            languageBtn.setAttribute("aria-expanded", "false");
+        }
+    });
+
+});
+
+
+// Mobile language selection
+document.querySelectorAll(".mobile-language-option").forEach(button => {
+
+    button.addEventListener("click", function () {
+
+        const selectedLanguage = this.dataset.lang;
+
+        applyLanguage(selectedLanguage);
+
+    });
+
+});
+
+
+// Load previously selected language
+const savedLanguage = localStorage.getItem("shoeSpaLanguage") || "en";
+
+applyLanguage(savedLanguage);
             // --- Mobile Menu Toggle ---
             const menuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
